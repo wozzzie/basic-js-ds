@@ -8,12 +8,15 @@ class ListNode {
 }
 
 function removeKFromList(l, k) {
-  while (l && l.value === k) {
-    l = l.next;
-  }
-  if (!l) return l;
+  if (!l) return l; // general case
+  let nextValue = l.next;
+  l.next = removeKFromList(l.next, k);
 
-  let linkedList = l;
+  if (l.value === k) {
+    return l.next;
+  } else {
+    return l;
+  }
 }
 
 module.exports = {
